@@ -1,24 +1,38 @@
-# Compiled class file
-*.class
+//Radics Sort
 
-# Log file
-*.log
+import java.util.ArrayList;
+import java.util.Arrays;
 
-# BlueJ files
-*.ctxt
+public class Ordenamiento {
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+    //metodo main
+    public static void main(String[] args) {
+        
+        //arreglo de tipo int con un tamaño definido
+        int numeros[] = {29, 32, 108, 43, 94, 17, 108, 94};
+        
+        //Se declara un arreglo de tipo ArrayList llamado "casillero"
+        ArrayList<Integer> casillero[];
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+        //El arreglo casillero tendra un espacio de 10 elementos
+        casillero = new ArrayList[10];
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+        //En este for se esta creando en cada espacio del arreglo una lista osea, un arreglo de listas
+        for (int i = 0; i < casillero.length; i++) {
+            casillero[i] = new ArrayList();
+        }
+        
+        //ES EN ESTE for EN DONDE YA NO SE COMO funciona
+        for (int i = 0, divisor = 1; i < 3; i++, divisor *= 10) {
+            for (int j = 0; j < numeros.length; j++) {
+                int digito = numeros[j] / divisor % 10;
+                casillero[digito].add(numeros[j]);
+            }   
+            for(int k = 0, x = 0; k < casillero.length;k++){
+                while(!casillero[k].isEmpty())
+                    numeros[x++] = casillero[k].remove(0);
+            }   
+        }
+        System.out.println(Arrays.toString(numeros));
+    }
+}
